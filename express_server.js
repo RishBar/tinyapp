@@ -39,7 +39,6 @@ const users = {
 
 let uniqueEmail = function(email) {
   for (const user in users) {
-    console.log(users[user].email);
     if (users[user].email === email) {
       return false;
     }
@@ -82,13 +81,22 @@ app.post("/register", (req, res) => {
     };
     res.redirect(`/urls`);
   }
-  // console.log(users);
 });
 
 app.post("/login", (req, res) => {
-  console.log(req.body);
-  res.cookie('username', req.body['username']);
-  res.redirect("/urls");
+  if (uniqueEmail(req.body.email)) {
+    res.status(403);
+    res.send('email not registered');
+  }
+  for (const user in users) {
+    console.log(users[user].email);
+    if (users[user].email === req.body.email && users[user].password === req.body.password) {
+      res.cookie('userID', user);
+      res.redirect("/urls");
+    }
+  }
+  res.status(403);
+  res.send('password or email incorrect');
 });
 
 app.post("/logout", (req, res) => {
