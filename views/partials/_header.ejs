@@ -17,21 +17,19 @@
       </div>
     </div>
 
-    <% if (cookies.username) { %>
-      <h5 class="p">Logged in as: <%= cookies.username %></h5>
+    <% if (cookies.userID) { %>
+      <% let userID = cookies.userID %>
+      <h5 class="p">Logged in as: <%= users[userID]["email"] %></h5>
       <form class="form-inline" action="/logout" method="POST">
         <div class="form-group mb-2">
           <button type="submit" class="btn btn-primary">Logout</button>
         </div>
       </form>
     <% } else { %>
-      <form class="form-inline" action="/login" method="POST">
-        <div class="form-group mb-2">
-          <label class="p" for="longURL">Username:</label>
-          <input class="form-control" type="text" name="username" style="width: 300px; margin: 1em">
-          <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-      </form>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/login">Login</a>
+        <a class="nav-item nav-link" href="/register">Register</a>
+      </div>
     <% } %>
 
 
