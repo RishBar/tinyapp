@@ -161,8 +161,7 @@ app.get("/login", (req, res) => {
 app.get('/register', (req, res) => {
   if (req.session["userID"]) {
     res.redirect("/urls");
-  }
-  else {
+  } else {
     let cookies = {
       "userID": req.session["userID"]
     };
