@@ -18,8 +18,7 @@
     </div>
 
     <% if (cookies.userID) { %>
-      <% let userID = cookies.userID %>
-      <h5 class="p">Logged in as: <%= users[userID]["email"] %></h5>
+      <h5 class="p">Logged in as: <%= user["email"]%></h5>
       <form class="form-inline" action="/logout" method="POST">
         <div class="form-group mb-2">
           <button type="submit" class="btn btn-primary">Logout</button>
